@@ -1,0 +1,2113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soluções para o Amanhã | Fontes de Energia Renovável</title>
+<meta name="description" content="Solar, Eólica, Hidrelétrica, Biomassa, Biogás, Geotérmica e Maremotriz: vantagens, desvantagens e comparativo objetivo entre as principais fontes de energia limpa. Projeto para a Feira Tec ETEC MCM 2026.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Gabarito:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --color-bg: #f6f7f2;
+    --color-green: #4CAF50;
+    --color-green-dark: #06402B;
+    --color-projection-bg: #f1f8ff;
+    --color-pro-bg: #e8f5e9;
+    --color-con-bg: #fdecea;
+    --color-con-accent: #c0392b;
+    --color-text: #333333;
+    --color-heading: #000000;
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-body: 'Gabarito', Tahoma, Geneva, Verdana, sans-serif;
+
+    /* Paleta "espectro de energias" — uma cor por fonte, usada como fio condutor visual */
+    --accent-solar: #F2A93B;
+    --accent-eolica: #4A90D9;
+    --accent-hidro: #1E6FA8;
+    --accent-biomassa: #7C8B3D;
+    --accent-biogas: #4FAE3E;
+    --accent-geo: #C1502E;
+    --accent-mare: #158C8C;
+    --spectrum: linear-gradient(90deg, var(--accent-solar), var(--accent-eolica), var(--accent-hidro), var(--accent-biomassa), var(--accent-biogas), var(--accent-geo), var(--accent-mare));
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    line-height: 1.6;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    position: relative;
+  }
+
+  /* Elemento de fundo global: trama sutil de pontos, visível nas margens fora do container */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image: radial-gradient(circle, rgba(6, 64, 43, 0.12) 1.4px, transparent 1.4px);
+    background-size: 26px 26px;
+    pointer-events: none;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    color: var(--color-heading);
+  }
+
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* Acessibilidade: link para pular direto ao conteúdo */
+  .skip-link {
+    position: absolute;
+    left: -999px;
+    top: auto;
+    background: var(--color-green-dark);
+    color: #fff;
+    padding: 12px 20px;
+    z-index: 1000;
+    border-radius: 0 0 6px 0;
+  }
+  .skip-link:focus {
+    left: 0;
+    top: 0;
+  }
+
+  /* --- CABEÇALHO (HEADER) --- */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* Fio de cor com o "espectro" das sete fontes de energia — assinatura visual do projeto */
+  .navbar::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3px;
+    background: var(--spectrum);
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--color-heading);
+  }
+
+  .logo-icon {
+    width: 32px;
+    height: 32px;
+    color: var(--color-green);
+    flex-shrink: 0;
+  }
+
+  .logo-text {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.15rem;
+    line-height: 1.1;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 26px;
+    margin-left: 40px;
+    flex-wrap: wrap;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: #000;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    position: relative;
+    transition: color 0.3s ease;
+    padding: 4px 2px;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--color-green);
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover,
+  .nav-links a:focus-visible {
+    color: var(--color-green);
+  }
+
+  .nav-links a:hover::after,
+  .nav-links a:focus-visible::after {
+    width: 100%;
+  }
+
+  .nav-links a:focus-visible {
+    outline: 2px solid var(--color-green);
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+
+  .nav-badge {
+    background-color: var(--color-projection-bg);
+    color: var(--color-green-dark);
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 8px 14px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  /* --- SESSÃO PRINCIPAL (HERO) --- */
+  .hero-section {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, #123249 0%, #2f6f8e 55%, #bfe3c4 100%);
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 8%;
+  }
+
+  /* Cena animada: sol, turbinas eólicas, painel solar e rio — o "ambiente" que o projeto discute */
+  .hero-scene {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .hero-scene svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.45));
+    pointer-events: none;
+  }
+
+  /* Textura de grão sutil sobre a cena, para profundidade */
+  .hero-section::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+    mix-blend-mode: overlay;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  /* Animações da cena */
+  .hero-sun-rays {
+    transform-origin: 0 0;
+    animation: heroSunSpin 60s linear infinite;
+  }
+
+  .hero-sun-core {
+    transform-origin: 0 0;
+    animation: heroSunPulse 4s ease-in-out infinite;
+  }
+
+  @keyframes heroSunSpin { to { transform: rotate(360deg); } }
+  @keyframes heroSunPulse {
+    0%, 100% { opacity: 0.85; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.06); }
+  }
+
+  .hero-turbine-blades {
+    transform-origin: 0 0;
+    animation: heroTurbineSpin 6s linear infinite;
+  }
+
+  .hero-turbine--b .hero-turbine-blades { animation-duration: 8s; }
+  .hero-turbine--c .hero-turbine-blades { animation-duration: 7s; animation-direction: reverse; }
+
+  @keyframes heroTurbineSpin { to { transform: rotate(360deg); } }
+
+  .hero-cloud--a { animation: heroCloudDriftA 46s ease-in-out infinite; }
+  .hero-cloud--b { animation: heroCloudDriftB 58s ease-in-out infinite; }
+
+  @keyframes heroCloudDriftA {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(70px); }
+  }
+  @keyframes heroCloudDriftB {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(-55px); }
+  }
+
+  .hero-bird--1 { animation: heroBirdFly 16s linear infinite; }
+  .hero-bird--2 { animation: heroBirdFly 20s linear infinite; animation-delay: 5s; }
+
+  @keyframes heroBirdFly {
+    0% { transform: translate(-40px, 170px); opacity: 0; }
+    8% { opacity: 1; }
+    92% { opacity: 1; }
+    100% { transform: translate(1680px, 40px); opacity: 0; }
+  }
+
+  .hero-water-lines path {
+    stroke-dasharray: 18 14;
+    animation: heroWaterFlow 6s linear infinite;
+  }
+  .hero-water-lines path:nth-child(2) { animation-duration: 7.5s; animation-direction: reverse; }
+  .hero-water-lines path:nth-child(3) { animation-duration: 9s; }
+
+  @keyframes heroWaterFlow { to { stroke-dashoffset: -64; } }
+
+  .hero-solar-glint {
+    animation: heroGlintSweep 5s linear infinite;
+  }
+
+  @keyframes heroGlintSweep { from { transform: translateX(0); } to { transform: translateX(230px); } }
+
+  .hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 620px;
+    animation: fadeIn 1.2s ease-in-out;
+  }
+
+  .hero-content h1 {
+    font-size: 3.2rem;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+  }
+
+  .hero-content p {
+    font-size: 1.15rem;
+    color: #ffffff;
+    line-height: 1.6;
+    font-weight: 600;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+    margin-bottom: 24px;
+  }
+
+  .hero-scope {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(2px);
+    border: 1px solid rgba(255,255,255,0.4);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    padding: 8px 16px;
+    border-radius: 999px;
+  }
+
+  /* Onda de transição entre o hero e o conteúdo */
+  .hero-wave {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    z-index: 2;
+    line-height: 0;
+    pointer-events: none;
+  }
+
+  .hero-wave svg {
+    width: 100%;
+    height: 70px;
+    display: block;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-content { animation: none; }
+    .hero-sun-rays,
+    .hero-sun-core,
+    .hero-turbine-blades,
+    .hero-cloud--a,
+    .hero-cloud--b,
+    .hero-bird--1,
+    .hero-bird--2,
+    .hero-water-lines path,
+    .hero-solar-glint { animation: none; }
+    html { scroll-behavior: auto; }
+  }
+
+  /* --- CONTEÚDO --- */
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px 0;
+    background-color: #fff;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding-top: 20px;
+    scroll-margin-top: 100px;
+  }
+
+  .page-header h2 {
+    font-size: 2.4em;
+    margin-bottom: 8px;
+  }
+
+  .page-header p {
+    font-size: 1.15em;
+    color: #555;
+    font-style: italic;
+  }
+
+  .spectrum-bar {
+    width: 72px;
+    height: 4px;
+    border-radius: 2px;
+    margin: 18px auto 0;
+    background: var(--spectrum);
+  }
+
+  .intro-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .intro-text {
+    max-width: 720px;
+  }
+
+  .intro-text h3 {
+    margin-top: 0;
+    margin-bottom: 6px;
+    color: #2c3e50;
+    font-size: 1.25em;
+  }
+
+  .intro-text p { margin-bottom: 18px; }
+
+  .intro-footer {
+    text-align: center;
+    font-weight: 700;
+    margin: 20px 0 60px;
+    padding: 18px 20px;
+    background-color: var(--color-pro-bg);
+    border-left: 5px solid var(--color-green);
+    border-radius: 4px;
+  }
+
+  /* --- CARDS DOS ODS (Objetivos de Desenvolvimento Sustentável) --- */
+  .ods-label {
+    margin-top: 4px;
+    margin-bottom: 12px;
+    font-size: 1.05em;
+  }
+
+  .ods-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .ods-card {
+    text-align: left;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    background: #fff;
+    border: 1px solid #ececec;
+    border-top: 4px solid var(--ods-color, var(--color-green));
+    border-radius: 10px;
+    padding: 16px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+  }
+
+  .ods-icon {
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    border-radius: 10px;
+    background: var(--ods-color, var(--color-green));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ods-icon svg { width: 30px; height: 30px; }
+
+  .ods-number {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.4px;
+    color: var(--ods-color, var(--color-green));
+    margin-bottom: 4px;
+  }
+
+  .ods-text h4 {
+    margin: 0 0 6px;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .ods-text p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #555;
+  }
+
+  /* --- SESSÃO DO VÍDEO --- */
+  .video-section {
+    text-align: center;
+    margin-bottom: 60px;
+    padding-bottom: 40px;
+    border-bottom: 2px solid #eee;
+    scroll-margin-top: 100px;
+  }
+
+  .video-section h2 {
+    font-size: 2em;
+    border-bottom: 3px solid #000;
+    display: inline-block;
+    padding-bottom: 5px;
+    margin-bottom: 30px;
+  }
+
+  .video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* Proporção de 16:9 para o YouTube */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    background: #000;
+    border-radius: 8px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  }
+
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+  }
+
+  .energy-section {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 60px;
+    padding-bottom: 40px;
+    border-bottom: 2px solid #eee;
+    scroll-margin-top: 100px;
+  }
+
+  /* Mancha de cor temática por fonte de energia, ao fundo de cada sessão */
+  .energy-section::before {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--section-accent, var(--color-green)) 0%, transparent 70%);
+    opacity: 0.10;
+    pointer-events: none;
+  }
+
+  .energy-section:nth-of-type(odd)::before { top: -70px; right: -60px; }
+  .energy-section:nth-of-type(even)::before { bottom: -70px; left: -60px; }
+
+  /* Ícone de fundo em traço fino, identificando a fonte de energia da sessão */
+  .section-icon {
+    position: absolute;
+    z-index: 0;
+    width: 230px;
+    height: 230px;
+    color: var(--section-accent, var(--color-green));
+    opacity: 0.07;
+    pointer-events: none;
+  }
+
+  .section-icon svg { width: 100%; height: 100%; }
+
+  .energy-section:nth-of-type(odd) .section-icon { top: -20px; right: -15px; }
+  .energy-section:nth-of-type(even) .section-icon { bottom: -20px; left: -15px; transform: scaleX(-1); }
+
+  .energy-section h2 {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 2em;
+    text-transform: uppercase;
+    border-bottom: 3px solid #000;
+    margin-bottom: 30px;
+    padding-bottom: 5px;
+  }
+
+  .accent-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 4px;
+    background: var(--section-accent, var(--color-green));
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  #solar { --section-accent: var(--accent-solar); }
+  #eolica { --section-accent: var(--accent-eolica); }
+  #hidreletrica { --section-accent: var(--accent-hidro); }
+  #biomassa { --section-accent: var(--accent-biomassa); }
+  #biogas { --section-accent: var(--accent-biogas); }
+  #geotermica { --section-accent: var(--accent-geo); }
+  #maremotriz { --section-accent: var(--accent-mare); }
+
+  .content-grid {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .content-image {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 24px;
+  }
+
+  .content-image > img {
+    flex: 1 1 300px;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+
+  .content-image > .diagram {
+    flex: 1.8 1 420px;
+    height: 260px;
+    margin-top: 0;
+  }
+
+  .content-image > .diagram img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+
+  .content-text p { margin-top: 0; text-align: justify; }
+
+  .projections {
+    margin-top: 24px;
+    background-color: var(--color-projection-bg);
+    padding: 20px;
+    border-radius: 8px;
+  }
+
+  .projections h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    color: var(--color-heading);
+    font-size: 1.2em;
+  }
+
+  .projections h4 { margin: 14px 0 6px; }
+
+  .projection-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .projection-item h4 {
+    font-size: 1.4em;
+    margin: 0 0 8px 0;
+    color: var(--color-heading);
+  }
+
+  .projection-list { list-style-type: disc; padding-left: 20px; }
+  .projection-list li { margin-bottom: 4px; }
+
+  .diagram { margin-top: 20px; }
+  .diagram img { border-radius: 8px; }
+
+  /* --- PRÓS E CONTRAS (conteúdo objetivo/equilibrado) --- */
+  .pros-cons {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .pros, .cons {
+    padding: 18px 20px;
+    border-radius: 8px;
+  }
+
+  .pros {
+    background-color: var(--color-pro-bg);
+    border-left: 4px solid var(--color-green);
+  }
+
+  .cons {
+    background-color: var(--color-con-bg);
+    border-left: 4px solid var(--color-con-accent);
+  }
+
+  .pros h4, .cons h4 {
+    font-size: 1em;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .pros ul, .cons ul {
+    padding-left: 18px;
+  }
+
+  .pros li, .cons li {
+    margin-bottom: 6px;
+    font-size: 0.95em;
+  }
+
+  /* --- SESSÃO CONCLUSÃO --- */
+  .conclusion-section {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 60px;
+    padding-bottom: 40px;
+    border-bottom: 2px solid #eee;
+    scroll-margin-top: 100px;
+  }
+
+  .conclusion-section .section-icon {
+    top: -30px;
+    right: -20px;
+    color: var(--color-green);
+  }
+
+  .conclusion-section h2 {
+    position: relative;
+    z-index: 1;
+    font-size: 2em;
+    text-transform: uppercase;
+    border-bottom: 3px solid #000;
+    display: inline-block;
+    margin-bottom: 24px;
+    padding-bottom: 5px;
+  }
+
+  .conclusion-content {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+  }
+
+  .conclusion-content p {
+    text-align: justify;
+    margin-bottom: 16px;
+  }
+
+  /* --- SESSÃO CONCLUSÃO --- */
+  .conclusion-section {
+    position: relative;
+    margin-bottom: 60px;
+    padding: 44px 40px;
+    border-radius: 14px;
+    background-color: var(--color-green-dark);
+    color: #eef3ef;
+    overflow: hidden;
+    scroll-margin-top: 100px;
+  }
+
+  .conclusion-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--spectrum);
+    opacity: 0.14;
+    pointer-events: none;
+  }
+
+  .conclusion-section h2 {
+    position: relative;
+    z-index: 1;
+    color: #ffffff;
+    font-size: 2em;
+    text-transform: uppercase;
+    border-bottom: 3px solid rgba(255,255,255,0.4);
+    display: inline-block;
+    padding-bottom: 5px;
+    margin-bottom: 20px;
+  }
+
+  .conclusion-intro {
+    position: relative;
+    z-index: 1;
+    max-width: 740px;
+    margin-bottom: 28px;
+    font-size: 1.02em;
+    line-height: 1.7;
+    color: #dfe8e3;
+    text-align: justify;
+  }
+
+  .tech-grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-bottom: 30px;
+  }
+
+  .tech-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 10px;
+    padding: 20px;
+  }
+
+  .tech-icon {
+    width: 38px;
+    height: 38px;
+    margin-bottom: 14px;
+    color: #a9d8b8;
+  }
+
+  .tech-card h4 {
+    color: #ffffff;
+    font-size: 1.05em;
+    margin-bottom: 8px;
+  }
+
+  .tech-card p {
+    color: #cfe0d7;
+    font-size: 0.92em;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .conclusion-closing {
+    position: relative;
+    z-index: 1;
+    font-weight: 700;
+    color: #ffffff;
+    border-top: 1px solid rgba(255,255,255,0.25);
+    padding-top: 20px;
+    max-width: 800px;
+    line-height: 1.6;
+  }
+
+  /* --- SESSÃO QUIZ --- */
+  .quiz-section {
+    position: relative;
+    margin: 20px 0 60px;
+    scroll-margin-top: 100px;
+  }
+
+  .quiz-section h2 {
+    font-size: 2em;
+    text-transform: uppercase;
+    border-bottom: 3px solid #000;
+    display: inline-block;
+    margin-bottom: 16px;
+    padding-bottom: 5px;
+  }
+
+  .quiz-intro {
+    color: #555;
+    margin-bottom: 24px;
+    max-width: 700px;
+  }
+
+  .quiz-card {
+    background-color: #fafcf9;
+    border: 1px solid #e4e9e1;
+    border-radius: 10px;
+    padding: 28px 30px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+  }
+
+  .quiz-progress {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85em;
+    font-weight: 700;
+    color: var(--color-green-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin-bottom: 16px;
+  }
+
+  .quiz-card h3 {
+    font-size: 1.3em;
+    margin-bottom: 20px;
+    line-height: 1.4;
+  }
+
+  .quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+
+  .quiz-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+    width: 100%;
+    padding: 13px 16px;
+    background-color: #fff;
+    border: 2px solid #e2e6df;
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-size: 0.98em;
+    color: var(--color-text);
+    cursor: pointer;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+  }
+
+  .quiz-option:hover:not(:disabled) {
+    border-color: var(--color-green);
+  }
+
+  .quiz-option:focus-visible {
+    outline: 2px solid var(--color-green-dark);
+    outline-offset: 2px;
+  }
+
+  .quiz-option .quiz-option-letter {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-color: #eef1ec;
+    color: var(--color-green-dark);
+    font-weight: 700;
+    font-size: 0.8em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .quiz-option.selected {
+    border-color: var(--color-green-dark);
+    background-color: var(--color-projection-bg);
+  }
+
+  .quiz-option.correct {
+    border-color: var(--color-green);
+    background-color: var(--color-pro-bg);
+  }
+
+  .quiz-option.correct .quiz-option-letter {
+    background-color: var(--color-green);
+    color: #fff;
+  }
+
+  .quiz-option.incorrect {
+    border-color: var(--color-con-accent);
+    background-color: var(--color-con-bg);
+  }
+
+  .quiz-option.incorrect .quiz-option-letter {
+    background-color: var(--color-con-accent);
+    color: #fff;
+  }
+
+  .quiz-option:disabled {
+    cursor: default;
+  }
+
+  .quiz-btn {
+    display: inline-block;
+    background-color: var(--color-green-dark);
+    color: #fff;
+    border: none;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.95em;
+    padding: 12px 26px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+  }
+
+  .quiz-btn:hover:not(:disabled) {
+    background-color: var(--color-green);
+  }
+
+  .quiz-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  .quiz-feedback {
+    margin-top: 18px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    font-size: 0.95em;
+    line-height: 1.5;
+  }
+
+  .quiz-feedback.is-correct {
+    background-color: var(--color-pro-bg);
+    border-left: 4px solid var(--color-green);
+  }
+
+  .quiz-feedback.is-incorrect {
+    background-color: var(--color-con-bg);
+    border-left: 4px solid var(--color-con-accent);
+  }
+
+  .quiz-feedback strong {
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .quiz-result {
+    background-color: #fafcf9;
+    border: 1px solid #e4e9e1;
+    border-radius: 10px;
+    padding: 34px 30px;
+    text-align: center;
+  }
+
+  .quiz-result h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+
+  .quiz-result-score {
+    font-size: 2.6em;
+    font-weight: 700;
+    color: var(--color-green-dark);
+    margin-bottom: 6px;
+  }
+
+  .quiz-result p.quiz-result-msg {
+    color: #555;
+    margin-bottom: 22px;
+  }
+
+  /* --- BOTÃO VOLTAR AO TOPO --- */
+  .back-to-top {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-green);
+    color: #fff;
+    border-radius: 50%;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    z-index: 90;
+  }
+
+  .back-to-top.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .back-to-top:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .back-to-top { transition: opacity 0.01ms; transform: none; }
+  }
+
+  /* --- RODAPÉ --- */
+  .site-footer {
+    position: relative;
+    background-color: var(--color-green-dark);
+    color: #c7d3cd;
+    padding: 40px 20px 20px;
+    margin-top: 20px;
+  }
+
+  .site-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--spectrum);
+  }
+
+  .footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 1100px;
+    margin: 0 auto;
+    gap: 20px;
+  }
+
+  .footer-section { flex: 1; min-width: 220px; margin-bottom: 20px; }
+
+  .footer-section h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #f1f1f1;
+  }
+
+  .footer-section ul { list-style: none; padding: 0; }
+  .footer-section ul li { margin-bottom: 8px; }
+
+  .footer-section ul li a {
+    color: #c7d3cd;
+    text-decoration: none;
+  }
+
+  .footer-section ul li a:hover,
+  .footer-section ul li a:focus-visible {
+    color: #fff;
+    text-decoration: underline;
+  }
+
+  .footer-bottom {
+    text-align: center;
+    border-top: 1px solid #2f5c47;
+    margin-top: 20px;
+    padding-top: 15px;
+    font-size: 14px;
+    color: #a6b8b0;
+  }
+
+  /* --- RESPONSIVO --- */
+  @media (max-width: 1024px) {
+    .container { padding-left: 30px; padding-right: 30px; }
+  }
+
+  @media (max-width: 768px) {
+    .navbar { padding: 15px 20px; }
+    .nav-links { margin-left: 0; width: 100%; justify-content: center; order: 3; }
+    .nav-badge { order: 2; }
+    .hero-content h1 { font-size: 2.3rem; }
+    .hero-content p { font-size: 1rem; }
+    .hero-wave svg { height: 40px; }
+    .hero-section::before { width: 300px; height: 300px; }
+    .ods-grid { grid-template-columns: 1fr; }
+    .content-image { flex-direction: column; }
+    .content-image > img,
+    .content-image > .diagram { height: auto; }
+    .projection-grid { grid-template-columns: 1fr; }
+    .pros-cons { grid-template-columns: 1fr; }
+    .page-header h2 { font-size: 1.8em; }
+    .energy-section h2 { font-size: 1.5em; }
+    .section-icon { width: 150px; height: 150px; }
+    .back-to-top { bottom: 16px; right: 16px; }
+    .quiz-card { padding: 22px 18px; }
+    .quiz-progress { flex-direction: column; gap: 4px; }
+    .conclusion-section { padding: 30px 22px; }
+    .tech-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-content h1 { font-size: 1.9rem; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#conteudo-principal">Pular para o conteúdo</a>
+
+<!-- CABEÇALHO -->
+<header class="navbar">
+  <a href="#home" class="logo" aria-label="Soluções para o Amanhã — página inicial">
+    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M11 20a7 7 0 0 1-7-7c0-4 3-8 8-13 5 5 8 9 8 13a7 7 0 0 1-7 7z"/>
+      <path d="M12 20v-9"/>
+    </svg>
+    <span class="logo-text">Soluções para<br>o Amanhã</span>
+  </a>
+
+  <nav class="nav-links" aria-label="Navegação principal">
+    <a href="#home">Home</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#video">Vídeo</a>
+    <a href="#fontes">Fontes de Energia</a>
+    <a href="#quiz">Quiz</a>
+  </nav>
+
+  <span class="nav-badge">Feira Tecnológica ETEC MCM 2026</span>
+</header>
+
+<main id="conteudo-principal">
+
+  <!-- HERO -->
+  <section class="hero-section" id="home">
+    <div class="hero-scene" aria-hidden="true">
+      <svg viewBox="0 0 1600 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustração animada de um ambiente natural com sol, turbinas eólicas, painéis solares e um rio">
+        <defs>
+          <linearGradient id="heroWater" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#3f95a3"/>
+            <stop offset="100%" stop-color="#1c5666"/>
+          </linearGradient>
+          <radialGradient id="heroSunGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#F2A93B" stop-opacity="0.9"/>
+            <stop offset="100%" stop-color="#F2A93B" stop-opacity="0"/>
+          </radialGradient>
+          <clipPath id="heroSolarClip">
+            <rect x="0" y="0" width="150" height="60" rx="4"/>
+          </clipPath>
+        </defs>
+
+        <!-- Céu -->
+        <rect x="0" y="0" width="1600" height="700" fill="none"/>
+
+        <!-- Nuvens -->
+        <g class="hero-cloud hero-cloud--a" opacity="0.5">
+          <ellipse cx="230" cy="120" rx="90" ry="26" fill="#ffffff"/>
+          <ellipse cx="300" cy="105" rx="60" ry="22" fill="#ffffff"/>
+          <ellipse cx="170" cy="112" rx="55" ry="20" fill="#ffffff"/>
+        </g>
+        <g class="hero-cloud hero-cloud--b" opacity="0.35">
+          <ellipse cx="880" cy="90" rx="110" ry="30" fill="#ffffff"/>
+          <ellipse cx="950" cy="76" rx="70" ry="24" fill="#ffffff"/>
+        </g>
+
+        <!-- Sol -->
+        <g transform="translate(1260,170)">
+          <circle class="hero-sun-core" r="130" fill="url(#heroSunGlow)"/>
+          <g class="hero-sun-rays" stroke="#F2A93B" stroke-width="5" stroke-linecap="round" opacity="0.85">
+            <line x1="0" y1="-98" x2="0" y2="-72"/>
+            <line x1="0" y1="72" x2="0" y2="98"/>
+            <line x1="-98" y1="0" x2="-72" y2="0"/>
+            <line x1="72" y1="0" x2="98" y2="0"/>
+            <line x1="-69" y1="-69" x2="-51" y2="-51"/>
+            <line x1="51" y1="51" x2="69" y2="69"/>
+            <line x1="69" y1="-69" x2="51" y2="-51"/>
+            <line x1="-51" y1="51" x2="-69" y2="69"/>
+          </g>
+          <circle r="55" fill="#F2A93B"/>
+        </g>
+
+        <!-- Pássaros -->
+        <g class="hero-bird hero-bird--1" fill="none" stroke="#0d2f22" stroke-width="4" stroke-linecap="round">
+          <path d="M0 0 Q8 -8 16 0 Q24 -8 32 0"/>
+        </g>
+        <g class="hero-bird hero-bird--2" fill="none" stroke="#123a2a" stroke-width="3" stroke-linecap="round">
+          <path d="M0 0 Q6 -6 12 0 Q18 -6 24 0"/>
+        </g>
+
+        <!-- Colina ao fundo -->
+        <path d="M0,430 C220,360 420,460 650,400 C880,340 1080,430 1300,380 C1420,355 1520,390 1600,370 L1600,700 L0,700 Z" fill="#3f6b45" opacity="0.6"/>
+
+        <!-- Turbinas eólicas -->
+        <g class="hero-turbine hero-turbine--a" transform="translate(300,250)">
+          <rect x="-4" y="0" width="8" height="140" fill="#e8ede9"/>
+          <g class="hero-turbine-blades">
+            <path d="M0,0 L7,-62 A9,9 0 0 1 -7,-62 Z" fill="#f4f7f4"/>
+            <path d="M0,0 L7,-62 A9,9 0 0 1 -7,-62 Z" fill="#f4f7f4" transform="rotate(120)"/>
+            <path d="M0,0 L7,-62 A9,9 0 0 1 -7,-62 Z" fill="#f4f7f4" transform="rotate(240)"/>
+          </g>
+          <circle r="6" fill="#cfd6d0"/>
+        </g>
+
+        <g class="hero-turbine hero-turbine--b" transform="translate(640,300) scale(0.7)">
+          <rect x="-4" y="0" width="8" height="140" fill="#e8ede9"/>
+          <g class="hero-turbine-blades">
+            <path d="M0,0 L7,-62 A9,9 0 0 1 -7,-62 Z" fill="#f4f7f4"/>
+            <path d="M0,0 L7,-62 A9,9 0 0 1 -7,-62 Z" fill="#f4f7f4" transform="rotate(120)"/>
+            <path d="M0,0 L7,-62 A9,9 0 0 1 -7,-62 Z" fill="#f4f7f4" transform="rotate(240)"/>
+          </g>
+          <circle r="6" fill="#cfd6d0"/>
+        </g>
+
+        <g class="hero-turbine hero-turbine--c" transform="translate(1120,270) scale(0.85)">
+          <rect x="-4" y="0" width="8" height="140" fill="#e8ede9"/>
+          <g class="hero-turbine-blades">
+            <path d="M0,0 L7,-62 A9,9 0 0 1 -7,-62 Z" fill="#f4f7f4"/>
+            <path d="M0,0 L7,-62 A9,9 0 0 1 -7,-62 Z" fill="#f4f7f4" transform="rotate(120)"/>
+            <path d="M0,0 L7,-62 A9,9 0 0 1 -7,-62 Z" fill="#f4f7f4" transform="rotate(240)"/>
+          </g>
+          <circle r="6" fill="#cfd6d0"/>
+        </g>
+
+        <!-- Colina em primeiro plano -->
+        <path d="M0,480 C260,540 480,440 760,500 C1000,550 1260,470 1600,520 L1600,700 L0,700 Z" fill="#2d5138"/>
+
+        <!-- Painel solar -->
+        <g transform="translate(870,478) skewX(-16)">
+          <g clip-path="url(#heroSolarClip)">
+            <rect x="0" y="0" width="150" height="60" rx="4" fill="#173350"/>
+            <line x1="0" y1="20" x2="150" y2="20" stroke="#2b5d8c" stroke-width="2"/>
+            <line x1="0" y1="40" x2="150" y2="40" stroke="#2b5d8c" stroke-width="2"/>
+            <line x1="30" y1="0" x2="30" y2="60" stroke="#2b5d8c" stroke-width="2"/>
+            <line x1="60" y1="0" x2="60" y2="60" stroke="#2b5d8c" stroke-width="2"/>
+            <line x1="90" y1="0" x2="90" y2="60" stroke="#2b5d8c" stroke-width="2"/>
+            <line x1="120" y1="0" x2="120" y2="60" stroke="#2b5d8c" stroke-width="2"/>
+            <rect class="hero-solar-glint" x="-40" y="0" width="40" height="60" fill="#ffffff" opacity="0.45"/>
+          </g>
+        </g>
+
+        <!-- Rio -->
+        <rect x="0" y="560" width="1600" height="140" fill="url(#heroWater)"/>
+        <g class="hero-water-lines" stroke="#bfe9ee" stroke-width="3" stroke-linecap="round" opacity="0.5">
+          <path d="M-100,590 Q50,580 200,590 T500,590 T800,590 T1100,590 T1400,590 T1700,590"/>
+          <path d="M-100,625 Q50,615 200,625 T500,625 T800,625 T1100,625 T1400,625 T1700,625"/>
+          <path d="M-100,660 Q50,650 200,660 T500,660 T800,660 T1100,660 T1400,660 T1700,660"/>
+        </g>
+      </svg>
+    </div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="hero-content">
+      <h1>Energia Renovável e Sustentável</h1>
+      <p>Um panorama claro sobre as principais fontes de energia limpa, o que cada uma oferece, quais são seus limites reais e como elas podem moldar o nosso futuro.</p>
+      <span class="hero-scope">Um projeto dos alunos da ETEC MCM</span>
+    </div>
+    <div class="hero-wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,40 C240,90 480,0 720,30 C960,60 1200,10 1440,50 L1440,100 L0,100 Z" fill="#ffffff"/>
+      </svg>
+    </div>
+  </section>
+
+  <div class="container">
+
+    <header class="page-header" id="sobre">
+      <h2>Soluções para o Amanhã</h2>
+      <p>Como a Energia Limpa Moldará o Nosso Futuro</p>
+      <div class="spectrum-bar" aria-hidden="true"></div>
+    </header>
+
+    <section class="intro-section" aria-labelledby="intro-heading">
+      <h2 id="intro-heading" class="sr-only">Por que investir em energia limpa</h2>
+      <div class="intro-text">
+        <h3>Mitigação das Mudanças Climáticas</h3>
+        <p>O benefício mais imediato e vital. Ao reduzir drasticamente a emissão de gases de efeito estufa na geração de eletricidade, é possível conter o aquecimento global e a frequência de eventos climáticos extremos.</p>
+
+        <h3>Crescimento da "Economia Verde"</h3>
+        <p>A transição energética exige infraestrutura. O futuro será marcado por um aumento de empregos na fabricação de painéis solares, instalação de turbinas eólicas e pesquisa em baterias — ainda que essa transição também exija requalificação de trabalhadores de setores tradicionais.</p>
+
+        <h3>Melhoria na Saúde Pública</h3>
+        <p>A queima de combustíveis fósseis libera micropartículas e toxinas no ar. Uma matriz mais limpa tende a significar ar mais respirável nas metrópoles e menos doenças respiratórias associadas à poluição.</p>
+
+        <h4 class="ods-label">ODS relacionados a este projeto</h4>
+        <div class="ods-grid">
+          <div class="ods-card" style="--ods-color:#FCC30B;">
+            <div class="ods-icon" aria-hidden="true">
+              <svg viewBox="0 0 100 100" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="50" cy="42" r="20"/>
+                <path d="M42 68 L42 78 Q50 84 58 78 L58 68"/>
+                <line x1="50" y1="8" x2="50" y2="18"/>
+              </svg>
+            </div>
+            <div class="ods-text">
+              <span class="ods-number">ODS 7</span>
+              <h4>Energia Acessível e Limpa</h4>
+              <p>Busca assegurar o acesso universal, confiável, moderno e mais barato a serviços de energia — o eixo central deste projeto.</p>
+            </div>
+          </div>
+          <div class="ods-card" style="--ods-color:#FD9D24;">
+            <div class="ods-icon" aria-hidden="true">
+              <svg viewBox="0 0 100 100" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="20" y="45" width="18" height="40"/>
+                <rect x="42" y="30" width="18" height="55"/>
+                <rect x="64" y="52" width="18" height="33"/>
+                <line x1="15" y1="85" x2="88" y2="85"/>
+              </svg>
+            </div>
+            <div class="ods-text">
+              <span class="ods-number">ODS 11</span>
+              <h4>Cidades e Comunidades Sustentáveis</h4>
+              <p>Propõe tornar os locais onde vivemos mais inclusivos, seguros, resistentes a desastres e sustentáveis.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p class="intro-footer">
+      A energia sustentável não trata apenas de "salvar o meio ambiente"; trata-se de garantir a sobrevivência e a prosperidade econômica das próximas gerações. Nenhuma fonte é perfeita — por isso, cada seção abaixo apresenta tanto os benefícios quanto as limitações reais de cada tecnologia.
+    </p>
+
+    <!-- VÍDEO EXPLICATIVO -->
+    <section class="video-section" id="video">
+      <h2>Vídeo Explicativo</h2>
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/bdgYTLW4ec4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <div id="fontes">
+
+      <section class="energy-section" id="solar">
+        <div class="section-icon" aria-hidden="true">
+          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round">
+            <circle cx="50" cy="50" r="16"/>
+            <line x1="50" y1="8" x2="50" y2="20"/>
+            <line x1="50" y1="80" x2="50" y2="92"/>
+            <line x1="8" y1="50" x2="20" y2="50"/>
+            <line x1="80" y1="50" x2="92" y2="50"/>
+            <line x1="21" y1="21" x2="29" y2="29"/>
+            <line x1="71" y1="71" x2="79" y2="79"/>
+            <line x1="79" y1="21" x2="71" y2="29"/>
+            <line x1="29" y1="71" x2="21" y2="79"/>
+          </svg>
+        </div>
+        <h2><span class="accent-dot" aria-hidden="true"></span>Energia Solar</h2>
+        <div class="content-grid">
+          <div class="content-image">
+            <img src="https://ebm.com.br/wp-content/uploads/2024/11/shutterstock_2490979099-scaled.jpg" alt="Painéis fotovoltaicos" loading="lazy">
+            <div class="diagram">
+              <img src="https://alphasolar.com.br/wp-content/uploads/2022/01/principio-de-funcionamento-da-energia-solar-fotovoltaica.png" alt="Diagrama do princípio de funcionamento da energia solar fotovoltaica" loading="lazy">
+            </div>
+          </div>
+          <div class="content-text">
+            <p>A energia solar é, em sua essência, a captura da luz e do calor irradiados pelo Sol para gerar eletricidade ou aquecimento. Por ser uma fonte totalmente renovável e inesgotável (na escala de tempo humana), ela se tornou uma das principais esperanças globais para a transição energética.</p>
+            <p>O processo mais conhecido e utilizado atualmente é a energia solar fotovoltaica, onde painéis feitos de materiais semicondutores transformam diretamente os raios solares em energia elétrica de forma limpa e silenciosa.</p>
+
+            <div class="pros-cons">
+              <div class="pros">
+                <h4>✔ Vantagens</h4>
+                <ul>
+                  <li>Fonte inesgotável e disponível em quase todo o território nacional</li>
+                  <li>Pode ser instalada em telhados residenciais (geração distribuída)</li>
+                  <li>Baixíssimo custo de manutenção após a instalação</li>
+                  <li>Custo dos painéis caiu de forma expressiva nas últimas décadas</li>
+                </ul>
+              </div>
+              <div class="cons">
+                <h4>✘ Desvantagens</h4>
+                <ul>
+                  <li>Geração intermitente: cai à noite e em dias nublados</li>
+                  <li>Investimento inicial ainda é alto para muitas famílias</li>
+                  <li>Usinas de grande porte exigem áreas extensas</li>
+                  <li>Fabricação e descarte dos painéis geram resíduos que precisam de reciclagem adequada</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="projections">
+              <h3>Projeção de uso</h3>
+              <div class="projection-grid">
+                <div class="projection-item">
+                  <h4>12 GW</h4>
+                  <p>Apenas no ano de 2025, o Brasil adicionou quase 12 GW (11,96 GW) de nova capacidade solar à rede.</p>
+                </div>
+                <div class="projection-item">
+                  <h4>75,9 GW</h4>
+                  <p>A projeção da Associação Brasileira de Energia Solar Fotovoltaica (Absolar) é que o país feche 2026 com cerca de 75,9 GW de potência instalada.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="energy-section" id="eolica">
+        <div class="section-icon" aria-hidden="true">
+          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="50" y1="50" x2="50" y2="95"/>
+            <circle cx="50" cy="50" r="4" fill="currentColor" stroke="none"/>
+            <path d="M50 50 L50 10 Q60 20 50 50"/>
+            <path d="M50 50 L85 65 Q72 70 50 50"/>
+            <path d="M50 50 L18 68 Q30 74 50 50"/>
+          </svg>
+        </div>
+        <h2><span class="accent-dot" aria-hidden="true"></span>Energia Eólica</h2>
+        <div class="content-grid">
+          <div class="content-image">
+            <img src="https://www.valuup.com.br/wp-content/uploads/2019/03/energiaeolicaaerogerador-cke.jpg" alt="Parque eólico" loading="lazy">
+            <div class="diagram">
+              <img src="https://quantageracao.com.br/wp-content/uploads/2021/01/imagem-para-post-2.jpg" alt="Diagrama de funcionamento da turbina eólica" loading="lazy">
+            </div>
+          </div>
+          <div class="content-text">
+            <p>A energia eólica é obtida a partir da força dos ventos. Trata-se de uma fonte renovável, limpa e inesgotável que converte a energia cinética gerada pelo movimento das massas de ar em energia elétrica através de aerogeradores. Hoje, é uma das alternativas mais importantes para a redução da dependência de combustíveis fósseis no mundo todo.</p>
+
+            <div class="pros-cons">
+              <div class="pros">
+                <h4>✔ Vantagens</h4>
+                <ul>
+                  <li>Não emite poluentes durante a operação</li>
+                  <li>O solo dos parques eólicos pode continuar sendo usado para agricultura e pecuária</li>
+                  <li>Custo de operação relativamente baixo</li>
+                  <li>Brasil tem grande potencial, especialmente no Nordeste e no litoral</li>
+                </ul>
+              </div>
+              <div class="cons">
+                <h4>✘ Desvantagens</h4>
+                <ul>
+                  <li>Geração depende da intensidade do vento (intermitente)</li>
+                  <li>Ruído das turbinas e impacto visual na paisagem</li>
+                  <li>Risco a aves e morcegos migratórios</li>
+                  <li>Conexão à rede pode ser cara em locais remotos</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="projections">
+              <h3>Projeção de uso</h3>
+              <ul class="projection-list">
+                <li>A energia eólica tende a crescer nos próximos anos.</li>
+                <li>O avanço ocorre devido à redução de custos e à evolução das turbinas.</li>
+                <li>O Brasil possui grande potencial eólico, principalmente no Nordeste.</li>
+                <li>A expansão contribui para uma matriz energética mais limpa e diversificada.</li>
+                <li>No futuro, espera-se maior uso de energia eólica offshore e onshore.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="energy-section" id="hidreletrica">
+        <div class="section-icon" aria-hidden="true">
+          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M50 10 C65 35 78 52 78 68 A28 28 0 0 1 22 68 C22 52 35 35 50 10 Z"/>
+          </svg>
+        </div>
+        <h2><span class="accent-dot" aria-hidden="true"></span>Energia Hidráulica (Hidrelétrica)</h2>
+        <div class="content-grid">
+          <div class="content-image">
+            <img src="https://www.ludfor.com.br/arquivos/importacao/posts/c20ad4d76fe97759aa27a0c99bff6710.png" alt="Usina hidrelétrica" loading="lazy">
+            <div class="diagram">
+              <img src="https://www.mundodaeletrica.com.br/y/269/SEP-720.jpg" alt="Esquema da represa de uma usina hidrelétrica" loading="lazy">
+            </div>
+          </div>
+          <div class="content-text">
+            <p>A energia hidrelétrica é a eletricidade gerada a partir da força das águas em movimento. Trata-se de uma das fontes renováveis mais robustas e utilizadas no mundo. O processo geralmente envolve o represamento de um rio com uma barragem para criar um grande reservatório.</p>
+
+            <div class="pros-cons">
+              <div class="pros">
+                <h4>✔ Vantagens</h4>
+                <ul>
+                  <li>Fonte confiável e despachável — pode gerar conforme a demanda</li>
+                  <li>Baixo custo operacional depois de construída</li>
+                  <li>Vida útil longa, de várias décadas</li>
+                  <li>Reservatórios podem ter usos múltiplos (irrigação, abastecimento, lazer)</li>
+                </ul>
+              </div>
+              <div class="cons">
+                <h4>✘ Desvantagens</h4>
+                <ul>
+                  <li>Grandes usinas alagam áreas extensas e deslocam comunidades</li>
+                  <li>Altera significativamente os ecossistemas fluviais</li>
+                  <li>Investimento inicial alto e obras longas</li>
+                  <li>Geração pode cair bastante em períodos de seca</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="projections">
+              <h3>Projeção de uso</h3>
+              <ul class="projection-list">
+                <li><strong>Participação na matriz:</strong> as usinas hidrelétricas representam historicamente a maior fatia da nossa matriz elétrica.</li>
+                <li><strong>Capacidade instalada:</strong> o Brasil conta com mais de 109 GW de potência outorgada em usinas hidrelétricas.</li>
+                <li><strong>Gigantes globais:</strong> o país abriga algumas das maiores usinas do planeta, como a Usina Binacional de Itaipu.</li>
+                <li><strong>Vida útil e eficiência:</strong> são infraestruturas feitas para durar décadas, quase um século.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="energy-section" id="biomassa">
+        <div class="section-icon" aria-hidden="true">
+          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 80 C20 40 45 15 85 15 C85 55 60 80 20 80 Z"/>
+            <path d="M20 80 C40 60 55 45 85 15"/>
+          </svg>
+        </div>
+        <h2><span class="accent-dot" aria-hidden="true"></span>Energia Biomassa</h2>
+        <div class="content-grid">
+          <div class="content-image">
+            <img src="https://origoenergia.com.br/wp-content/uploads/2022/05/shutterstock_2023277612-1.webp" alt="Usina de biomassa" loading="lazy">
+            <div class="diagram">
+              <img src="https://marsemfim.com.br/wp-content/uploads/2021/08/ciclo-da-biomassa.jpg" alt="Ciclo de geração por biomassa" loading="lazy">
+            </div>
+          </div>
+          <div class="content-text">
+            <p>A biomassa é uma fonte de energia produzida a partir de matéria orgânica de origem vegetal ou animal. Ela pode ser usada na forma sólida (como lenha ou carvão vegetal), líquida (como etanol e biodiesel) ou gasosa (como o biogás).</p>
+
+            <div class="pros-cons">
+              <div class="pros">
+                <h4>✔ Vantagens</h4>
+                <ul>
+                  <li>Aproveita resíduos agrícolas e florestais que seriam descartados</li>
+                  <li>Pode gerar energia de forma contínua, sem depender do clima</li>
+                  <li>Fortalece cadeias produtivas do setor agrícola</li>
+                </ul>
+              </div>
+              <div class="cons">
+                <h4>✘ Desvantagens</h4>
+                <ul>
+                  <li>A queima ainda libera CO₂ e outros poluentes locais</li>
+                  <li>Produção em larga escala pode competir por terras com o cultivo de alimentos</li>
+                  <li>Logística de transporte e armazenamento pode encarecer o processo</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="projections">
+              <h3>Projeção de uso</h3>
+              <p>A tendência é que o uso de energia de biomassa aumente nos próximos anos, impulsionado por ser uma fonte renovável e pelo maior interesse em alternativas aos combustíveis fósseis.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="energy-section" id="biogas">
+        <div class="section-icon" aria-hidden="true">
+          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round">
+            <circle cx="40" cy="60" r="22"/>
+            <circle cx="68" cy="35" r="12"/>
+            <circle cx="78" cy="60" r="6"/>
+          </svg>
+        </div>
+        <h2><span class="accent-dot" aria-hidden="true"></span>Energia Biogás</h2>
+        <div class="content-grid">
+          <div class="content-image">
+            <div class="diagram">
+              <img src="https://eixos.com.br/wp-content/uploads/2022/01/PDE-2031-elege-bioga%CC%81s-e-SAF-como-rotas-para-descarbonizar-transportes.jpeg" alt="PDE 2031 elege biogás e SAF como rotas para descarbonizar os transportes" loading="lazy">
+            </div>
+            <div class="diagram">
+              <img src="https://www.processsensing.com/blogimg/biogas_station2.png" alt="Estação de biogás" loading="lazy">
+            </div>
+          </div>
+          <div class="content-text">
+            <p>A energia do biogás é uma fonte renovável obtida a partir da decomposição de matéria orgânica (como restos de alimentos, dejetos agrícolas, esterco animal e esgoto) em um ambiente sem oxigênio. Esse processo natural, chamado de digestão anaeróbia, libera uma mistura de gases (majoritariamente metano e gás carbônico) que pode ser capturada e queimada para gerar energia elétrica ou térmica.</p>
+
+            <div class="pros-cons">
+              <div class="pros">
+                <h4>✔ Vantagens</h4>
+                <ul>
+                  <li>Transforma resíduos (esgoto, dejetos, lixo orgânico) em energia útil</li>
+                  <li>Reduz a emissão de metano que iria diretamente para a atmosfera</li>
+                  <li>Pode ser purificado e usado como substituto do gás natural (biometano)</li>
+                </ul>
+              </div>
+              <div class="cons">
+                <h4>✘ Desvantagens</h4>
+                <ul>
+                  <li>Escala de produção ainda é pequena comparada a outras fontes</li>
+                  <li>Exige infraestrutura de captação e purificação do gás</li>
+                  <li>Biodigestores demandam manutenção constante e podem gerar odores</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="projections">
+              <h3>Projeção de uso</h3>
+              <h4>2025</h4>
+              <ul class="projection-list">
+                <li>1.003 usinas de biogás cadastradas e em operação no país até o final do ano.</li>
+                <li>5 bilhões de metros cúbicos (m³) foi o volume aproximado de biogás produzido no ano.</li>
+              </ul>
+              <h4>2026</h4>
+              <ul class="projection-list">
+                <li>0,5% é a nova meta de mistura obrigatória de biometano no gás natural fóssil comercializado.</li>
+                <li>504 mil metros cúbicos (m³) por dia é a demanda mínima extra garantida apenas por essa nova regra.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="energy-section" id="geotermica">
+        <div class="section-icon" aria-hidden="true">
+          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 80 L38 35 L52 55 L65 30 L92 80 Z"/>
+            <path d="M40 20 Q45 12 40 5"/>
+            <path d="M55 20 Q60 12 55 5"/>
+          </svg>
+        </div>
+        <h2><span class="accent-dot" aria-hidden="true"></span>Energia Geotérmica</h2>
+        <div class="content-grid">
+          <div class="content-image">
+            <img src="https://123ecos.com.br/wp-content/uploads/2024/11/Energia-geotermica.webp" alt="Usina geotérmica" loading="lazy">
+            <div class="diagram">
+              <img src="https://semedjaperi.rj.gov.br/site/imagens/1985286997.jpg" alt="Esquema de funcionamento de uma usina de energia geotérmica" loading="lazy">
+            </div>
+          </div>
+          <div class="content-text">
+            <p>A energia geotérmica é uma fonte renovável que utiliza o calor proveniente do interior da Terra para gerar eletricidade ou proporcionar aquecimento direto. Essa energia térmica é aproveitada através de reservatórios subterrâneos onde a água é aquecida por rochas extremamente quentes.</p>
+
+            <div class="pros-cons">
+              <div class="pros">
+                <h4>✔ Vantagens</h4>
+                <ul>
+                  <li>Disponível 24 horas por dia, sem depender do clima</li>
+                  <li>Baixa emissão de poluentes na operação</li>
+                  <li>Ocupa pouca área de superfície em comparação a outras usinas</li>
+                </ul>
+              </div>
+              <div class="cons">
+                <h4>✘ Desvantagens</h4>
+                <ul>
+                  <li>Só é viável em regiões com atividade geotérmica favorável — o Brasil tem pouco potencial comparado a países como a Islândia</li>
+                  <li>Custo de perfuração inicial é elevado</li>
+                  <li>Pequeno risco de abalos sísmicos induzidos pela perfuração</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="projections">
+              <h3>Projeção de uso</h3>
+              <p>Após ultrapassar a marca de 16,5 gigawatts (GW) de capacidade instalada global para geração de eletricidade no início de 2025, o setor está em uma trajetória de expansão, especialmente no uso direto de calor terrestre.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="energy-section" id="maremotriz">
+        <div class="section-icon" aria-hidden="true">
+          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round">
+            <path d="M8 35 Q22 22 36 35 T64 35 T92 35"/>
+            <path d="M8 55 Q22 42 36 55 T64 55 T92 55"/>
+            <path d="M8 75 Q22 62 36 75 T64 75 T92 75"/>
+          </svg>
+        </div>
+        <h2><span class="accent-dot" aria-hidden="true"></span>Energia Maremotriz</h2>
+        <div class="content-grid">
+          <div class="content-image">
+            <img src="https://images.prismic.io/novaenergia/Z6I7x5bqstJ9-N8x_closeup-view-storm-barriers-placed-near-stones-water-1-.jpg?auto=format%2Ccompress&fit=max" alt="Esquema de funcionamento da energia maremotriz" loading="lazy">
+            <div class="diagram">
+              <img src="https://img.magnific.com/vetores-gratis/conceito-de-energia-renovavel-com-usina-de-energia-das-mares_1308-129971.jpg?semt=ais_hybrid&w=740&q=80" alt="Ilustração conceitual de usina de energia das marés" loading="lazy">
+            </div>
+          </div>
+          <div class="content-text">
+            <p>A energia maremotriz é uma fonte de energia renovável que utiliza o movimento das marés para produzir eletricidade. Ela funciona por meio de turbinas que são acionadas pelas correntes marinhas e pelas diferenças de nível das águas (alta e baixa maré), transformando a força das marés em energia elétrica.</p>
+
+            <div class="pros-cons">
+              <div class="pros">
+                <h4>✔ Vantagens</h4>
+                <ul>
+                  <li>Marés são previsíveis, diferente do vento e do sol</li>
+                  <li>Alta densidade energética da água em relação ao ar</li>
+                  <li>Não ocupa área terrestre</li>
+                </ul>
+              </div>
+              <div class="cons">
+                <h4>✘ Desvantagens</h4>
+                <ul>
+                  <li>Tecnologia ainda cara e pouco madura em escala comercial</li>
+                  <li>Poucos locais no mundo têm amplitude de maré suficiente</li>
+                  <li>Pode impactar a fauna marinha e os ecossistemas costeiros</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="projections">
+              <h3>Projeção de uso</h3>
+              <p>A projeção de uso da energia maremotriz é de crescimento gradual, impulsionado por inovações tecnológicas capazes de aproveitar o movimento das marés de forma mais eficiente. No Brasil, o potencial teórico das marés é estimado em cerca de 8 GW, embora ainda sejam necessários estudos mais detalhados para identificar os locais ideais para instalação de usinas.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- CONCLUSÃO -->
+    <section class="conclusion-section" id="conclusao">
+      <h2>Conclusão: o Papel da Tecnologia</h2>
+      <p class="conclusion-intro">Nenhuma das sete fontes apresentadas neste site seria viável em larga escala apenas por existir na natureza. Sol, vento, água, resíduos orgânicos e calor da Terra sempre estiveram disponíveis — o que mudou nas últimas décadas foi a tecnologia capaz de captar, armazenar e distribuir essa energia de forma eficiente. É esse avanço tecnológico, mais do que a fonte em si, que está tornando a transição energética possível.</p>
+
+      <div class="tech-grid">
+        <div class="tech-card">
+          <svg class="tech-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="7" y="3" width="10" height="18" rx="2"/>
+            <line x1="10" y1="1.5" x2="14" y2="1.5"/>
+            <line x1="9" y1="14" x2="15" y2="14"/>
+            <line x1="9" y1="10" x2="15" y2="10"/>
+          </svg>
+          <h4>Armazenamento de Energia</h4>
+          <p>Baterias cada vez mais eficientes e baratas guardam o excedente gerado por painéis solares e turbinas eólicas, resolvendo o principal ponto fraco dessas fontes: a intermitência.</p>
+        </div>
+        <div class="tech-card">
+          <svg class="tech-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="2.2"/>
+            <circle cx="4" cy="6" r="1.8"/>
+            <circle cx="20" cy="6" r="1.8"/>
+            <circle cx="4" cy="18" r="1.8"/>
+            <circle cx="20" cy="18" r="1.8"/>
+            <line x1="5.6" y1="7.2" x2="10.3" y2="10.6"/>
+            <line x1="18.4" y1="7.2" x2="13.7" y2="10.6"/>
+            <line x1="5.6" y1="16.8" x2="10.3" y2="13.4"/>
+            <line x1="18.4" y1="16.8" x2="13.7" y2="13.4"/>
+          </svg>
+          <h4>Redes Inteligentes (Smart Grids)</h4>
+          <p>Sistemas digitais monitoram o consumo em tempo real e equilibram automaticamente a oferta de fontes variáveis com a demanda, evitando desperdício e apagões.</p>
+        </div>
+        <div class="tech-card">
+          <svg class="tech-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="6" y="6" width="12" height="12" rx="2"/>
+            <rect x="10" y="10" width="4" height="4"/>
+            <line x1="12" y1="2" x2="12" y2="6"/>
+            <line x1="12" y1="18" x2="12" y2="22"/>
+            <line x1="2" y1="12" x2="6" y2="12"/>
+            <line x1="18" y1="12" x2="22" y2="12"/>
+          </svg>
+          <h4>Monitoramento e Automação</h4>
+          <p>Sensores e algoritmos preveem a intensidade do vento e da radiação solar e otimizam a operação de usinas e turbinas com o mínimo de intervenção humana.</p>
+        </div>
+      </div>
+
+      <p class="conclusion-closing">São essa tecnologia que conecta os recursos naturais aos Objetivos de Desenvolvimento Sustentável 7 e 11 apresentados no site. Sem inovação em armazenamento, distribuição e automação, a energia limpa continuaria cara, instável e restrita a poucas regiões. Investir em pesquisa e desenvolvimento tecnológico é tão essencial quanto investir na construção de novas usinas.</p>
+    </section>
+
+    <!-- QUIZ INTERATIVO -->
+    <section class="quiz-section" id="quiz">
+      <h2>Teste Seus Conhecimentos</h2>
+      <p class="quiz-intro">Responda às 5 perguntas abaixo com base no que você acabou de ler sobre energias renováveis e veja sua pontuação final.</p>
+
+      <div class="quiz-card" id="quizCard">
+        <div class="quiz-progress">
+          <span>Pergunta <span id="quizCurrent">1</span> de <span id="quizTotal">5</span></span>
+          <span>Pontuação: <span id="quizScore">0</span></span>
+        </div>
+        <h3 id="quizQuestion"></h3>
+        <div class="quiz-options" id="quizOptions"></div>
+        <button type="button" class="quiz-btn" id="quizActionBtn" disabled>Confirmar resposta</button>
+        <div class="quiz-feedback" id="quizFeedback" hidden></div>
+      </div>
+
+      <div class="quiz-result" id="quizResult" hidden>
+        <h3>Quiz concluído!</h3>
+        <div class="quiz-result-score"><span id="quizFinalScore">0</span>/5</div>
+        <p class="quiz-result-msg" id="quizFinalMsg"></p>
+        <button type="button" class="quiz-btn" id="quizRestartBtn">Refazer o quiz</button>
+      </div>
+    </section>
+
+  </div>
+
+</main>
+
+<a href="#home" class="back-to-top" aria-label="Voltar ao topo da página">↑</a>
+
+<!-- RODAPÉ -->
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>Sobre o Projeto</h3>
+      <p>Desenvolvido pelos alunos da ETEC MCM, este projeto busca apresentar de forma clara e equilibrada as principais fontes de energia renovável, mostrando tanto seus benefícios quanto seus limites reais, para apoiar a conscientização sobre a transição energética.</p>
+    </div>
+     <div class="footer-section">
+      <h3>Desenvolvedores</h3>
+      <ul>
+        <li>Arthur Arlindo</li>
+        <li>Gabriel Souza</li>
+        <li>Gabriel Prado</li>
+        <li>Guilherme Monteiro</li>
+        <li>Jonas Nunes</li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h3>Links Rápidos</h3>
+      <ul>
+        <li><a href="#home">Início</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#video">Vídeo</a></li>
+        <li><a href="#fontes">Fontes de Energia</a></li>
+        <li><a href="#conclusao">Conclusão</a></li>
+        <li><a href="#quiz">Quiz</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h3>Fontes de Energia</h3>
+      <ul>
+        <li><a href="#solar">Solar</a></li>
+        <li><a href="#eolica">Eólica</a></li>
+        <li><a href="#hidreletrica">Hidrelétrica</a></li>
+        <li><a href="#biomassa">Biomassa</a></li>
+        <li><a href="#biogas">Biogás</a></li>
+        <li><a href="#geotermica">Geotérmica</a></li>
+        <li><a href="#maremotriz">Maremotriz</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2026 Feira Tecnológica ETEC MCM. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var backToTop = document.querySelector('.back-to-top');
+    if (!backToTop) return;
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 500) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+  })();
+
+  // --- QUIZ DINÂMICO ---
+  (function () {
+    var questions = [
+      {
+        question: "Qual é a principal limitação da energia solar e eólica em comum, segundo o site?",
+        options: [
+          "O alto risco de abalos sísmicos",
+          "A intermitência: dependem do clima e das condições naturais para gerar energia",
+          "A necessidade de represar rios",
+          "A escassez de matéria-prima no mercado mundial"
+        ],
+        correctIndex: 1,
+        explanation: "Tanto a energia solar quanto a eólica têm geração intermitente: a solar cai à noite e em dias nublados, e a eólica depende da intensidade do vento."
+      },
+      {
+        question: "Como o biogás é produzido, segundo o processo descrito no site?",
+        options: [
+          "Pela queima direta de carvão vegetal",
+          "Pela digestão anaeróbia: decomposição de matéria orgânica sem oxigênio",
+          "Pela evaporação da água do mar",
+          "Pela fissão de átomos em reatores subterrâneos"
+        ],
+        correctIndex: 1,
+        explanation: "O biogás vem da digestão anaeróbia — decomposição de matéria orgânica (esgoto, dejetos, restos de alimentos) sem oxigênio, liberando metano e gás carbônico."
+      },
+      {
+        question: "Por que a energia geotérmica ainda é pouco explorada no Brasil?",
+        options: [
+          "Porque o país não tem regiões com atividade geotérmica favorável, ao contrário de países como a Islândia",
+          "Porque é proibida por lei ambiental",
+          "Porque exige grandes áreas de terra alagada",
+          "Porque compete diretamente com plantações de alimentos"
+        ],
+        correctIndex: 0,
+        explanation: "A energia geotérmica só é viável em regiões com atividade geotérmica favorável, e o Brasil tem pouco potencial nesse sentido, diferente de países como a Islândia."
+      },
+      {
+        question: "O que torna a energia maremotriz mais previsível do que a solar e a eólica?",
+        options: [
+          "Ela usa baterias de longa duração",
+          "As marés seguem ciclos regulares, diferente do vento e do sol",
+          "Ela não depende de nenhuma condição natural",
+          "É controlada manualmente por operadores 24 horas por dia"
+        ],
+        correctIndex: 1,
+        explanation: "As marés são previsíveis porque seguem ciclos regulares (alta e baixa maré), ao contrário do vento e da luz solar, que variam bastante."
+      },
+      {
+        question: "Qual das opções abaixo é citada como uma vantagem tecnológica das usinas hidrelétricas?",
+        options: [
+          "Serem despacháveis, ou seja, capazes de gerar energia conforme a demanda",
+          "Não exigirem nenhum tipo de obra de infraestrutura",
+          "Não terem impacto nenhum sobre os ecossistemas fluviais",
+          "Gerarem energia apenas durante o dia"
+        ],
+        correctIndex: 0,
+        explanation: "Diferente de fontes intermitentes como solar e eólica, as hidrelétricas são despacháveis: a tecnologia permite gerar energia conforme a demanda da rede."
+      }
+    ];
+
+    var currentIndex = 0;
+    var score = 0;
+    var answered = false;
+
+    var quizQuestion = document.getElementById('quizQuestion');
+    var quizOptions = document.getElementById('quizOptions');
+    var quizActionBtn = document.getElementById('quizActionBtn');
+    var quizFeedback = document.getElementById('quizFeedback');
+    var quizCurrent = document.getElementById('quizCurrent');
+    var quizScore = document.getElementById('quizScore');
+    var quizCard = document.getElementById('quizCard');
+    var quizResult = document.getElementById('quizResult');
+    var quizFinalScore = document.getElementById('quizFinalScore');
+    var quizFinalMsg = document.getElementById('quizFinalMsg');
+    var quizRestartBtn = document.getElementById('quizRestartBtn');
+
+    if (!quizCard) return;
+
+    function renderQuestion() {
+      answered = false;
+      var q = questions[currentIndex];
+      quizCurrent.textContent = currentIndex + 1;
+      quizQuestion.textContent = q.question;
+      quizFeedback.hidden = true;
+      quizFeedback.className = 'quiz-feedback';
+      quizOptions.innerHTML = '';
+
+      var letters = ['A', 'B', 'C', 'D'];
+      q.options.forEach(function (optionText, i) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'quiz-option';
+        btn.setAttribute('data-index', i);
+
+        var letterSpan = document.createElement('span');
+        letterSpan.className = 'quiz-option-letter';
+        letterSpan.textContent = letters[i];
+
+        var textSpan = document.createElement('span');
+        textSpan.textContent = optionText;
+
+        btn.appendChild(letterSpan);
+        btn.appendChild(textSpan);
+
+        btn.addEventListener('click', function () {
+          if (answered) return;
+          var siblings = quizOptions.querySelectorAll('.quiz-option');
+          siblings.forEach(function (s) { s.classList.remove('selected'); });
+          btn.classList.add('selected');
+          quizActionBtn.disabled = false;
+          quizActionBtn.setAttribute('data-selected', i);
+        });
+
+        quizOptions.appendChild(btn);
+      });
+
+      quizActionBtn.textContent = 'Confirmar resposta';
+      quizActionBtn.disabled = true;
+      quizActionBtn.removeAttribute('data-selected');
+    }
+
+    function showFeedback() {
+      var q = questions[currentIndex];
+      var selectedIndex = parseInt(quizActionBtn.getAttribute('data-selected'), 10);
+      var options = quizOptions.querySelectorAll('.quiz-option');
+
+      options.forEach(function (opt, i) {
+        opt.disabled = true;
+        if (i === q.correctIndex) {
+          opt.classList.add('correct');
+        } else if (i === selectedIndex) {
+          opt.classList.add('incorrect');
+        }
+      });
+
+      var isCorrect = selectedIndex === q.correctIndex;
+      if (isCorrect) score++;
+      quizScore.textContent = score;
+
+      quizFeedback.hidden = false;
+      quizFeedback.className = 'quiz-feedback ' + (isCorrect ? 'is-correct' : 'is-incorrect');
+      quizFeedback.innerHTML = '<strong>' + (isCorrect ? 'Resposta correta!' : 'Resposta incorreta.') + '</strong>' + q.explanation;
+
+      answered = true;
+      quizActionBtn.textContent = currentIndex < questions.length - 1 ? 'Próxima pergunta' : 'Ver resultado';
+      quizActionBtn.disabled = false;
+    }
+
+    function showResult() {
+      quizCard.hidden = true;
+      quizResult.hidden = false;
+      quizFinalScore.textContent = score;
+
+      var msg;
+      if (score === 5) {
+        msg = 'Excelente! Você domina o conteúdo sobre energias renováveis.';
+      } else if (score >= 3) {
+        msg = 'Muito bom! Você já entende bem o assunto, mas vale revisar alguns pontos.';
+      } else {
+        msg = 'Vale a pena revisar as seções acima para fixar melhor o conteúdo.';
+      }
+      quizFinalMsg.textContent = msg;
+    }
+
+    quizActionBtn.addEventListener('click', function () {
+      if (!answered) {
+        showFeedback();
+        return;
+      }
+      currentIndex++;
+      if (currentIndex >= questions.length) {
+        showResult();
+      } else {
+        renderQuestion();
+      }
+    });
+
+    quizRestartBtn.addEventListener('click', function () {
+      currentIndex = 0;
+      score = 0;
+      quizScore.textContent = 0;
+      quizResult.hidden = true;
+      quizCard.hidden = false;
+      renderQuestion();
+    });
+
+    renderQuestion();
+  })();
+</script>
+
+</body>
+</html>
